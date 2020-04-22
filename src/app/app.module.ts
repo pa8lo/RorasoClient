@@ -8,11 +8,25 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { DetallesComponent } from './detalles/detalles.component';
+import { PhoneInputComponent } from './phone-input/phone-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  declarations: [
+    AppComponent,
+    DetallesComponent,
+    PhoneInputComponent
+  ],
+  entryComponents: [DetallesComponent,PhoneInputComponent],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule 
+  ],
   providers: [
     StatusBar,
     SplashScreen,

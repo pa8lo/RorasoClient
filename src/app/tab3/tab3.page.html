@@ -1,17 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+    <ion-toolbar style="background-image: linear-gradient(-45deg, #ad0404, #eb445a);">
+      <ion-title size="large" style="color: white;font-weight: bold;text-align: center;">
+        Rechazados
+      </ion-title>
+      <ion-icon 
+      style="margin-right: 8px;"
+      slot="end"
+      color="light"
+      (click)="pedidoservice.setPedidos(pedidoservice.pedidos.pedidos[0].Clients.Phone)"
+      name="refresh"
+      class="ion-activatable ripple-parent">
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-icon>
     </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <div *ngIf="pedidoservice.pedidos">
+      <ion-list  *ngFor="let pedido of pedidoservice.pedidos.pedidos">  
+        <ion-card style="margin: 0px;" *ngIf="pedido.State.Description == 'Rechazado'" (click)="abrirdetalles(pedido)">
+          <ion-grid fixed style="padding: 12px;text-align: center;font-weight: bold;">
+                <ion-row>
+                  <ion-col size="12" color="dark">
+                    <ion-item color="light" style="border-radius:12px">
+                      <ion-col size="6" color="primary">
+                          <ion-label>FECHA : </ion-label>
+                      </ion-col>
+                      <ion-col size="6" color="primary">
+                          <ion-label>{{formatDate(pedido.Date) }}</ion-label>
+                      </ion-col>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-item color="success" style="border-radius:12px;">
+                        <ion-label style="text-align:center" >$ {{pedido.Amount}}</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col size="6">
+                      <ion-item color="danger" style="border-radius:12px;">
+                          <ion-label style="text-align:center" color="light">{{pedido.State.Description}}</ion-label>
+                      </ion-item>
+                  </ion-col>
+                  <ion-col size="4">
+                  </ion-col>
+                  <ion-col size="4">
+                      <ion-icon style="font-size: 4vh;" class="ion-no-padding ion-no-margin" name="search-outline"></ion-icon>
+                  </ion-col>
+                  <ion-col size="4">
+                </ion-col>
+                </ion-row>
+              </ion-grid>
+         </ion-card>
+      </ion-list>
+    </div>
 </ion-content>
