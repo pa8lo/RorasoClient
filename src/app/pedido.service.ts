@@ -18,7 +18,7 @@ export class PedidoService {
     public loadingController: LoadingController,public toastController: ToastController) { }
 
   getPedidos(phone:number): Observable<any>{
-    return this.http.get<any>("https://roraso.herokuapp.com/Pedido/Cliente?Phone="+phone)
+    return this.http.get<any>("https://rorasobackend.herokuapp.com/Pedido/Cliente?Phone="+phone)
       .pipe();
   }
   async setPedidos(phone:number) {
@@ -26,7 +26,7 @@ export class PedidoService {
       message: 'Cargando Pedidos...',
     });
     await loading.present();
-    let exec = this.http.get<any>("https://roraso.herokuapp.com/Pedido/Cliente?Phone="+phone)
+    let exec = this.http.get<any>("https://rorasobackend.herokuapp.com/Pedido/Cliente?Phone="+phone)
     .pipe()
     .subscribe(
       data => {
