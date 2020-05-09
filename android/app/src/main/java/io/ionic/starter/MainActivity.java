@@ -1,6 +1,8 @@
 package io.ionic.starter;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Toast;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;

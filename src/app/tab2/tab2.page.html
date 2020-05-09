@@ -13,8 +13,9 @@
     <ion-ripple-effect></ion-ripple-effect>
   </ion-icon>
     </ion-toolbar>
-    <div *ngIf="pedidoservice.pedidos">
-      <ion-list  *ngFor="let pedido of pedidoservice.pedidos.pedidos">  
+    <div *ngIf="pedidoservice.pedidos" >
+      <ion-list  >
+        <div *ngFor="let pedido of pedidoservice.pedidos.pedidos">  
         <ion-card style="margin: 0px;" *ngIf="pedido.State.Description == 'Entregado'" (click)="abrirdetalles(pedido)">
           <ion-grid fixed style="padding: 12px;text-align: center;font-weight: bold;">
                 <ion-row>
@@ -39,15 +40,16 @@
                       </ion-item>
                   </ion-col>
                   <ion-col size="4">
-                    </ion-col>
-                    <ion-col size="4">
-                        <ion-icon style="font-size: 4vh;" class="ion-no-padding ion-no-margin" name="search-outline"></ion-icon>
-                    </ion-col>
-                    <ion-col size="4">
                   </ion-col>
+                  <ion-col size="4">
+                      <ion-icon style="font-size: 4vh;" class="ion-no-padding ion-no-margin" name="search-outline"></ion-icon>
+                  </ion-col>
+                  <ion-col size="4">
+                </ion-col>
                 </ion-row>
               </ion-grid>
          </ion-card>
+        </div>
       </ion-list>
     </div>
 </ion-content>
