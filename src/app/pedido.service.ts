@@ -27,13 +27,39 @@ export class PedidoService {
     });
     await loading.present();
     let exec = this.http.get<any>("https://rorasobackend.herokuapp.com/Pedido/Cliente?Phone="+phone)
-    .pipe()
     .subscribe(
+      
       data => {
         this.pedidos = data,
         this.setBadge(data)
         ,loading.dismiss()
         ,this.modalController.dismiss()
+      },
+      (error)=>  {
+      if(error.status == 404){
+        loading.dismiss()
+        this.errorToast("Teléfono invalido. Volver a Ingresarlo")
+        return
+      }else{
+        loading.dismiss()
+        this.errorToast("Error de conexión. Reintentar luego")
+        return
+      }
+    })
+    
+  }
+  async reloadPedidos(phone:number) {
+    const loading = await this.loadingController.create({
+      message: 'Cargando Pedidos...',
+    });
+    await loading.present();
+    let exec = this.http.get<any>("https://rorasobackend.herokuapp.com/Pedido/Cliente?Phone="+phone)
+    .subscribe(
+      
+      data => {
+        this.pedidos = data,
+        this.setBadge(data)
+        ,loading.dismiss()
       },
       (error)=>  {
       if(error.status == 404){
